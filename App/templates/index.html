@@ -128,34 +128,63 @@
 {% endblock %}
 
 {% block content %}
-    <h1>Flask MVC</h1>
+    
+    
+        
+    <body>
+        <nav>
+          Amiibo App
+        </nav>
+      
+      <main>
+        <h1>Flask MVC</h1>
     {% if is_authenticated %}
         <p> Welcome {{current_user.username}} </p>
     {% endif %}
-    
-        
+        <section class="card">
+          <button onclick="filterBySeries('Animal Crossing')">
+            Animal Crossing
+          </button>
+      
+          <button onclick="filterBySeries('Breath of the Wild')">
+            Breath of the Wild
+          </button>
+      
+          <button onclick="filterBySeries('Super Mario')">
+            Super Mario
+          </button>
+      
+          <input type="search" id="searchKey" placeholder="search name">
+          <button onclick=search()>Search</button>
+      
+        </section>
+      
         <article>
-            <div class="scrollable">
-               <table class="card">
-                 <thead>
-                    <tr>
-                     <th>Name <button onclick="sortByName()">Sort</button> </th>
-                     <th>Series</th>
-                     <th>Image</th>
-                     <th>Release</th>
-                     <th>Action</th>
-                   </tr>
-                 </thead>
-                 <tbody id="result">
-                 </tbody>
-               </table>
-            </div>
-            
-            <aside>
-              <h1>Supported Games For <span id="character"></span></h1>
-              <ul id="games"></ul>
-            </aside>
-          </article>
+          <div class="scrollable">
+             <table class="card">
+               <thead>
+                  <tr>
+                   <th>Name <button onclick="sortByName()">Sort</button> </th>
+                   <th>Series</th>
+                   <th>Image</th>
+                   <th>Release</th>
+                   <th>Action</th>
+                 </tr>
+               </thead>
+               <tbody id="result">
+               </tbody>
+             </table>
+          </div>
+          
+          <aside>
+            <h1>Supported Games For <span id="character"></span></h1>
+            <ul id="games"></ul>
+          </aside>
+        </article>
+        
+      </main>
+      
+      
           {% endblock %}
 <script>
             let state = [];
@@ -196,4 +225,5 @@
           
             showAllGames();
           </script>
+</body>
    
