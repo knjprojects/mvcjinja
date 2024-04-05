@@ -21,6 +21,6 @@ def health_check():
 
 @index_views.route('/api/data')
 def get_data():
-    response = requests.get('https://amiiboapi.com/api/amiibo/?showusage')
+    response = index_views.open('https://amiiboapi.com/api/amiibo/?showusage').json()#requests.get('https://amiiboapi.com/api/amiibo/?showusage')
     data = response.json()
     return jsonify(data.amiibo)
