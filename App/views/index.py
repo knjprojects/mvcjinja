@@ -1,4 +1,4 @@
-from flask import Blueprint, redirect, render_template, request, send_from_directory, jsonify
+from flask import Blueprint, redirect, render_template, request, requests, send_from_directory, jsonify
 from App.models import db
 from App.controllers import create_user
 
@@ -18,3 +18,9 @@ def init():
 @index_views.route('/health', methods=['GET'])
 def health_check():
     return jsonify({'status':'healthy'})
+
+@index_views.route('/api/data')
+def get_data():
+    response = requests.get('https://amiiboapi.com/api/amiibo/?showusage')
+    data = response.json()
+    return jsonify(data.amiibo)
