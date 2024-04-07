@@ -16,7 +16,7 @@ def init():
     bob=create_user('bob', 'bobpass')
     #create_user('bob', 'bobpass')
     #create_book('The Hobbit', 'J.R.R. Tolkien', 'George Allen & Unwin')
-    bob.review_book(bob,1, 1, 'A great book!')
+    bob.review_book(1, 1, 'A great book!')
     return jsonify(message='db initialized!')
 
 @index_views.route('/health', methods=['GET'])
