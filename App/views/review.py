@@ -9,9 +9,9 @@ from App.controllers import (
   get_all_reviews_json,
   get_review,
   get_user_reviews,
-  get_book_reviews,get_user, review_book
+  get_book_reviews,get_user
 )
-
+from App.models import review_book
 review_views = Blueprint('review_views', __name__, template_folder='../templates')
 
 @review_views.route('/reviews', methods=['GET'])
