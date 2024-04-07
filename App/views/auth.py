@@ -1,10 +1,10 @@
 from flask import Blueprint, render_template, jsonify, request, flash, send_from_directory, flash, redirect, url_for
 from flask_jwt_extended import jwt_required, current_user, unset_jwt_cookies, set_access_cookies
-
-from.index import index_views
+from App.controllers import get_all_users
+from.index import index_views,index_page
 
 from App.controllers import (
-    login
+    login,signUpUser
 )
 
 auth_views = Blueprint('auth_views', __name__, template_folder='../templates')
@@ -43,6 +43,22 @@ def logout_action():
     unset_jwt_cookies(response)
     return response
 
+@auth_views.route('/signup', methods=['POST'])
+def signup_action():
+  data = request.form  # get data from form submission
+  response=None
+  usa=signUpUser(data['username'], data['password'])
+  token = login(data['username'], data['password'])
+  if token:
+    response=redirect(url_for('book_views.get_book_page'))
+    set_access_cookies(response, token)
+    flash('Account Created!')  # send message
+  else : 
+     
+     response = redirect(url_for('index_views.index_page'))
+     flash("username or email already exists") 
+  return response
+  
 '''
 API Routes
 '''

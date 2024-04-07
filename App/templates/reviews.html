@@ -1,0 +1,69 @@
+{% extends "layout.html" %}
+{% block title %}App Reviews{% endblock %}
+{% block page %}App Reviews{% endblock %}
+
+{{ super() }}
+
+{% block content %}
+    <div class="row">
+        <p>
+            This review table is renderd on the Server. Flask gets the data from the database and uses jinja templates to dyanmically render this page when a request is sent to <a href="/reviews">/reviews</a>.
+        </p>
+    </div>
+    {% if is_authenticated %}
+    <div>
+        <p> Welcome {{current_user.username}} </p>
+    <div class="row">
+      <form class="col s12" method="POST" action="/reviews">
+        
+        <div class="row">
+          <div class="input-field col s6">
+            <input placeholder="Username" name="bookid" type="text" class="validate">
+            <label for="bookid">Book Id</label>
+          </div>
+          <div class="input-field col s6">
+            <input placeholder="password" name="rating" type="text" class="validate">
+            <label for="rating">Rating</label>
+          </div>
+          <div class="input-field col s6">
+            <input placeholder="Username" name="reviewtext" type="text" class="validate">
+            <label for="reviewtext">Review </label>
+          </div>
+        </div>
+      
+        <div class="row">
+          <div class="input-field col s12">
+            <button class="btn waves-effect waves-light right purple" type="submit" name="action">Submit</button>
+          </div>
+        </div> 
+
+      </form>
+    </div>
+    </div>
+{% else %}
+<div><p> Please log in to create views </p>
+    </div>
+    
+{% endif %}
+    
+
+    <div class="row">
+      <table>
+        <thead>
+          <tr>
+            <th>BookName</th><th>Review</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for review in reviews %}
+            <tr>
+                <td>{{review.book_name}}</td>
+                <td>{{review.reviewtext}}</td>
+                <td>{{}}</td>
+            </tr>
+          {% endfor %}
+        <tbody>
+      </table>
+    </div>
+
+{% endblock %}
