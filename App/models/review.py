@@ -14,7 +14,7 @@ class Review(db.Model):
     self.reviewtext = reviewtext
   
   def __repr__(self):
-      return f'<Review {self.id} : {self.user.username} book {self.book.name}>'
+      return f'<Review {self.id} : {self.reviewtext} book {self.book.name}>'
   
   def get_json(self):
     return{

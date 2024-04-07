@@ -12,7 +12,7 @@ def index_page():
 def init():
     db.drop_all()
     db.create_all()
-    bob=create_user('bob', 'bobpass')
+    create_user('bob', 'bobpass')
     #create_book('The Hobbit', 'J.R.R. Tolkien', 'George Allen & Unwin')
     #bob.review_book(bob,1, 1, 'A great book!')
     return jsonify(message='db initialized!')
