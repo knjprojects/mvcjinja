@@ -6,7 +6,7 @@ class User(db.Model):
     username =  db.Column(db.String, nullable=False, unique=True)
     password = db.Column(db.String(120), nullable=False)
     review = db.relationship('Review', backref='user',lazy=True)
-    books = db.relationship('Book', backref='user', lazy=True)
+    
    
     def __init__(self, username, password):
         self.username = username
