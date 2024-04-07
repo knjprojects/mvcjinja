@@ -1,6 +1,6 @@
 from werkzeug.security import check_password_hash, generate_password_hash
 from App.database import db
-from App.models import Book, Review
+#from App.models import Book, Review
 class User(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     username =  db.Column(db.String, nullable=False, unique=True)
@@ -31,7 +31,10 @@ def update_user(self, username):
    db.session.add(self)
    return db.session.commit()
    return None
+# to svoifd circular import issue on render, im importing it using a lazy import instead top of the file
 def review_book(self, book_id, rating, reviewtext):
+        from App.models import Book
+        from App.models import Review
         book = Book.query.get(book_id)
         if book:
             try:
@@ -46,6 +49,7 @@ def review_book(self, book_id, rating, reviewtext):
         return None
 
 def delete_review(self, review_id):
+    from App.models import Review
     review = Review.query.get(review_id)
     if review.user == self:
         db.session.delete(review)
@@ -54,6 +58,7 @@ def delete_review(self, review_id):
     return None
 
 def update_review(self, review_id, reviewtext, rating):
+    from App.models import Review
     review = Review.query.get(review_id)
     if review.user == self:
       review.reviewtext = reviewtext
