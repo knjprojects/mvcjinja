@@ -1,6 +1,5 @@
 from werkzeug.security import check_password_hash, generate_password_hash
 from App.database import db
-from App.controllers import get_user
 from App.models import Book, Review
 class User(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -28,12 +27,10 @@ def check_password(self, password):
     return check_password_hash(self.password, password)
 
 def update_user(self, username):
-    user = get_user(id)
-    if user:
-        user.username = username
-        db.session.add(user)
-        return db.session.commit()
-    return None
+   self.username = username
+   db.session.add(self)
+   return db.session.commit()
+   return None
 def review_book(self, book_id, rating, reviewtext):
         book = Book.query.get(book_id)
         if book:
