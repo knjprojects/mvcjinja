@@ -11,7 +11,6 @@ def index_page():
     db.create_all()
     bob=create_user('bob', 'bobpass')
     create_book('The Hobbit', 'J.R.R. Tolkien', 'George Allen & Unwin','https://m.media-amazon.com/images/M/MV5BMzU0NDY0NDEzNV5BMl5BanBnXkFtZTgwOTIxNDU1MDE@._V1_FMjpg_UX1000_.jpg')
-    #create_review(1,1,3,'Great!')
     bob.review_book(1, 3,'A great book!')
     return render_template('index.html')
 
