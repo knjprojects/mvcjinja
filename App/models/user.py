@@ -38,7 +38,7 @@ def review_book(self, book_id, rating, reviewtext):
         book = Book.query.get(book_id)
         if book:
             try:
-                review = Review(self.id, book_id, reviewtext, rating)
+                review = Review(self.id, book_id, rating, reviewtext)
                 db.session.add(review)
                 db.session.commit()
                 return review
