@@ -33,20 +33,20 @@ def update_user(self, username):
    return None
 # to svoifd circular import issue on render, im importing it using a lazy import instead top of the file
 def review_book(self, book_id, rating, reviewtext):
-        from App.models import Book
-        from App.models import Review
-        book = Book.query.get(book_id)
-        if book:
-            try:
-                review = Review(self.id, book_id, rating, reviewtext)
-                db.session.add(review)
-                db.session.commit()
-                return review
-            except Exception as e:
-                print(e)
-                db.session.rollback()
-                return None
-        return None
+    from App.models import Book
+    from App.models import Review
+    book = Book.query.get(book_id)
+    if book:
+        try:
+            review = Review(self.id, book_id, rating, reviewtext)
+            db.session.add(review)
+            db.session.commit()
+            return review
+        except Exception as e:
+            print(e)
+            db.session.rollback()
+            return None
+    return None
 
 def delete_review(self, review_id):
     from App.models import Review
