@@ -2,7 +2,7 @@ from flask import Blueprint, redirect, render_template, request, send_from_direc
 from App.database import db
 from App.controllers import create_user
 from App.models import review_book
-from App.controllers import login, create_book
+from App.controllers import login, create_book, create_review
 index_views = Blueprint('index_views', __name__, template_folder='../templates')
 
 @index_views.route('/', methods=['GET'])
@@ -11,6 +11,7 @@ def index_page():
     db.create_all()
     bob=create_user('bob', 'bobpass')
     create_book('The Hobbit', 'J.R.R. Tolkien', 'George Allen & Unwin')
+    create_review(1,1,3,'Great!')
     #bob.review_book(1, 3,'A great book!')
     return render_template('index.html')
 
