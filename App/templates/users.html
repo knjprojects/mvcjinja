@@ -10,7 +10,7 @@
             This is table is renderd on the Server. Flask gets the data from the database and uses jinja templates to dyanmically render this page when a request is sent to <a href="/users">/users</a>.
         </p>
     </div>
-
+      {% if is_authenticated %}
     <div class="row">
       <form class="col s12" method="POST" action="/users">
         
@@ -33,6 +33,7 @@
 
       </form>
     </div>
+    {% endif %}
 
     <div class="row">
       <table>
