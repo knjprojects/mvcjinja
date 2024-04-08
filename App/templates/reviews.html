@@ -51,7 +51,7 @@
       <table>
         <thead>
           <tr>
-            <th>ReviewId</th><th>Rating</th><th>ReviewText</th><th>UserId</th>
+            <th>ReviewId</th><th>Rating</th><th>ReviewText</th><th>UserId</th><th>BookName</th>
           </tr>
         </thead>
         <tbody>
@@ -62,6 +62,7 @@
                 <td>{{review.rating}}</td>
                 <td>{{review.reviewtext}}</td>
                 <td>{{review.user_id}}</td>
+                <td>{{review.book_name}}</td>
                 
             </tr>
           {% endfor %}
