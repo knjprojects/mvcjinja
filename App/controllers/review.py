@@ -2,7 +2,11 @@ from App.models import Review
 from App.database import db
 
 
-
+def create_review(user_id, book_id, rating, reviewtext):
+    review = Review(user_id=user_id, book_id=book_id, rating=rating, reviewtext=reviewtext)
+    db.session.add(review)
+    db.session.commit()
+    return review
 def get_review(id):
     return Review.query.get(id) #Review.query.filter_by(id=id).first()
 
