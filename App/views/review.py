@@ -19,6 +19,12 @@ def get_reviews_page():
     reviews = get_all_reviews_json()
     return render_template('reviews.html', reviews=reviews)
 
+@review_views.route('/reviews/<int:bookid>', methods=['GET'])
+def get_reviews_book(bookid):
+    reviews = get_all_reviews_json()
+    books = get_book_reviews(bookid)
+    return render_template('books.html',books=books, reviews=reviews)
+
 @review_views.route('/reviews', methods=['POST'])
 @jwt_required()
 def create_review_action():
