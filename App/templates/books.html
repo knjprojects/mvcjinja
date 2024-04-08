@@ -21,6 +21,47 @@
     display: flex;
     align-items: center;
 }
+.card-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.card {
+  width: 300px;
+  height: 400px;
+  background-color: white;
+  border-radius: 5px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  margin-bottom: 20px;
+}
+
+.card-image {
+  width: 100%;
+  height: 200px;
+  overflow: hidden;
+}
+
+.card-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.card-content {
+  padding: 15px;
+}
+
+.card-title {
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+
+.card-author,
+.card-publisher {
+  font-size: 16px;
+  margin-bottom: 5px;
+}
   {% endblock %}
 
 
@@ -48,6 +89,10 @@
             <input placeholder="publisher" name="author" type="text" class="validate">
             <label for="publisher">Publisher</label>
           </div>
+          <div class="input-field col s6">
+            <input placeholder="cover" name="cover" type="text" class="validate">
+            <label for="cover">Cover Image Link</label>
+          </div>
         </div>
       
         <div class="row">
@@ -67,7 +112,7 @@
     
 
     <div class="row">
-      <table>
+      <!--<table>
         <thead>
           <tr>
             <th>Id</th><th>Bookname</th>
@@ -85,22 +130,22 @@
                 <td>{{book.name}}</td>
                 <td>{{book.author}}</td>
                 <td>{{book.publisher}}</td>
-                <!--<td>{{book.average_rating}}</td>-->
+               
             </tr>
             {% if is_authenticated %}
             <tr>
                 <td>
                     <form class="form-row" method="GET" action="/reviews" id="makeReview">
-                       <!-- <input type="radio" id="option1" name="rating" value="option1">
+                        <input type="radio" id="option1" name="rating" value="option1">
                         <label for="option1"> 1</label><br>
                         <input type="radio" id="option2" name="rating" value="option2">
                         <label for="option2"> 2</label><br>
                         <input type="radio" id="option3" name="rating" value="option3">
                         <label for="option3"> 3</label><br> 
                         <div class="input-field col s6">
-                            <input placeholder="review text" name="reviewtext" type="text" class="validate">
+                            <input placeholder="reviewtext" name="reviewtext" type="text" class="validate">
                             <label for="reviewtext">Review Text</label>
-                        </div> -->
+                        </div>
                     
                         <input class="" type="submit"  value="Review">
                       </form>
@@ -110,7 +155,21 @@
           {% endfor %}
           {% endif %}
         <tbody>
-      </table>
+      </table>-->
+      <div class="card-container">
+        {% for book in books %}
+          <div class="card">
+            <div class="card-image">
+              <img src="{{ book.cover }}" alt="{{ book.name }}">
+            </div>
+            <div class="card-content">
+              <h2 class="card-title">{{ book.name }}</h2>
+              <p class="card-author">{{ book.author }}</p>
+              <p class="card-publisher">{{ book.publisher }}</p>
+            </div>
+          </div>
+        {% endfor %}
+      </div>
       <aside>
 
       </aside>

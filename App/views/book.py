@@ -21,7 +21,7 @@ def get_book_page():
 def create_book_action():
     data = request.form
     flash(f"Book {data['bookname']} created!")
-    create_book(data['bookname'], data['author'], data['publisher'])
+    create_book(data['bookname'], data['author'], data['publisher'],data['cover'])
     return redirect(url_for('book_views.get_book_page'))
 
 @book_views.route('/api/books', methods=['GET'])
@@ -32,7 +32,7 @@ def get_books_action():
 @book_views.route('/api/books', methods=['POST'])
 def create_book_endpoint():
     data = request.json
-    book = create_book(data['bookname'], data['author'], data['publisher'])
+    book = create_book(data['bookname'], data['author'], data['publisher'],data['cover'])
     return jsonify({'message': f"book {book.name} created with id {book.id}"})
 
 @book_views.route('/static/books', methods=['GET'])

@@ -36,7 +36,7 @@ def get_reviews_action():
 """"@review_views.route('/api/reviews', methods=['POST'])
 def create_review_endpoint():
     data = request.json
-    book = create_book(data['bookname'], data['author'], data['publisher'])
+    book = create_book(data['bookname'], data['author'], data['publisher'],data['cover])
     return jsonify({'message': f"book {book.name} created with id {book.id}"})
 """
 @review_views.route('/static/reviews', methods=['GET'])

@@ -2,8 +2,8 @@ import csv
 from App.models import Book
 from App.database import db
 from flask import jsonify
-def create_book( name, author, publisher):
-    newbook = Book(name=name, author=author, publisher=publisher)
+def create_book( name, author, publisher,cover):
+    newbook = Book(name=name, author=author, publisher=publisher,cover=cover)
     db.session.add(newbook)
     db.session.commit()
     return newbook
@@ -19,7 +19,7 @@ def loadBooks():
             if row['type2'] == '':
                 row['type2'] = None"""
 
-            book = Book(name=row['name'], author=row['author'], publisher=row['publisher'])
+            book = Book(name=row['name'], author=row['author'], publisher=row['publisher'],cover=row['cover'])
             db.session.add(book) 
         db.session.commit()
 def get_book_by_name(name):
@@ -48,6 +48,7 @@ def get_complete_books_data():
             'name': book.name,
             'author': book.author,
             'publisher': book.publisher,
+            'cover':book.cover,
             'average_rating': average_rating,
             'reviews_count': len(book.reviews)
         })
