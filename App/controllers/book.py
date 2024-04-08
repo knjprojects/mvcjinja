@@ -8,20 +8,23 @@ def create_book( name, author, publisher,cover):
     db.session.commit()
     return newbook
 
-def loadBooks():
-    with open('books.csv', newline='', encoding='utf8') as csvfile:
-        reader = csv.DictReader(csvfile)
-        for row in reader:
-            """if row['height_m'] == '':
+    """if row['height_m'] == '':
                 row['height_m'] = None
             if row['weight_kg'] == '':
                 row['weight_kg'] = None
             if row['type2'] == '':
-                row['type2'] = None"""
+                row['type2'] = None
+
+def loadBooks():
+    with open('books.csv', newline='', encoding='utf8') as csvfile:
+        reader = csv.DictReader(csvfile)
+        for row in reader:
+           
 
             book = Book(name=row['name'], author=row['author'], publisher=row['publisher'],cover=row['cover'])
             db.session.add(book) 
         db.session.commit()
+"""
 def get_book_by_name(name):
     return Book.query.filter_by(name=name).first()
 

@@ -7,11 +7,11 @@ class Book(db.Model):
   publisher = db.Column(db.String(255),nullable=False)
   reviews_count = db.Column(db.Integer, default=0)
   reviews = db.relationship('Review', backref='book', lazy=True)
-  def __init__(self, name, author, publisher,cover):
+  def __init__(self, name, author, publisher, cover):
     self.name = name
     self.author = author
     self.publisher = publisher
-    self.cover=cover
+    self.cover = cover
     self.reviews_count=0
     
   def __repr__(self):
@@ -23,6 +23,6 @@ class Book(db.Model):
       'name': self.name,
       'author': self.author,
       'publisher': self.publisher,
-      'cover':self.cover,
+      'cover' : self.cover,
       'reviews_count': self.reviews_count,
   }
