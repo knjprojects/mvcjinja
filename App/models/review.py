@@ -21,6 +21,7 @@ class Review(db.Model):
       'id': self.id,
       'user_id': self.user.id,
       'book_name': self.book.name,
+      'user_name':self.user.name,
       #'book_id': self.book.id,
       'rating': self.rating,
       'reviewtext': self.reviewtext
