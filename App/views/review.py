@@ -1,7 +1,7 @@
 from flask import Blueprint, render_template, jsonify, request, send_from_directory, flash, redirect, url_for
 from flask_jwt_extended import jwt_required, current_user as jwt_current_user
 
-#from.index import index_views
+
 
 from App.controllers import (
 
@@ -11,7 +11,7 @@ from App.controllers import (
   get_user_reviews,
   get_book_reviews,get_user
 )
-from App.models import review_book
+
 review_views = Blueprint('review_views', __name__, template_folder='../templates')
 
 @review_views.route('/reviews', methods=['GET'])
@@ -25,7 +25,7 @@ def create_review_action():
     data = request.form
     flash(f"Review created!")
     usa=get_user(jwt_current_user.id)
-    usa.review_book(usa,data['bookid'], data['rating'], data['reviewtext'])
+    usa.review_book(data['bookid'], data['rating'], data['reviewtext'])
     return redirect(url_for('review_views.get_reviews_page'))
 
 @review_views.route('/api/reviews', methods=['GET'])
