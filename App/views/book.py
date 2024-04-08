@@ -14,7 +14,7 @@ book_views = Blueprint('book_views', __name__, template_folder='../templates')
 
 @book_views.route('/books', methods=['GET'])
 def get_book_page():
-    books = get_complete_books_data()#get_all_books()
+    books = get_all_books()#get_complete_books_data()#
     return render_template('books.html', books=books)
 
 @book_views.route('/books', methods=['POST'])
