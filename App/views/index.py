@@ -15,12 +15,12 @@ def index_page():
 
 @index_views.route('/init', methods=['GET'])
 def init():
-    db.drop_all()
-    db.create_all()
-    bob=create_user('bob', 'bobpass')
+    #db.drop_all()
+    #db.create_all()
+    #bob=create_user('bob', 'bobpass')
     #login('bob','bobpass')
     #create_user('bob', 'bobpass')
-    create_book('The Hobbit', 'J.R.R. Tolkien', 'George Allen & Unwin')
+    #create_book('The Hobbit', 'J.R.R. Tolkien', 'George Allen & Unwin')
     #bob.review_book(1, 1, 'A great book!')
     return jsonify(message='db initialized!')
 
