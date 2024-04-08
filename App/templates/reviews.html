@@ -51,16 +51,17 @@
       <table>
         <thead>
           <tr>
-            <th>BookName</th><th>Review</th>
+            <th>ReviewId</th><th>Rating</th><th>ReviewText</th>
           </tr>
         </thead>
         <tbody>
           {% if reviews%}
           {% for review in reviews %}
             <tr>
-                <td>{{review.book_name}}</td>
+                <td>{{review.id}}</td>
+                <td>{{review.rating}}</td>
                 <td>{{review.reviewtext}}</td>
-                <td>{{}}</td>
+                
             </tr>
           {% endfor %}
           {% endif %}

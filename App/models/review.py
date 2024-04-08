@@ -19,9 +19,9 @@ class Review(db.Model):
   def get_json(self):
     return{
       'id': self.id,
-      'user_id': self.user.id,
-      'book_name': self.book.name,
-      'book_id': self.book.id,
+      #'user_id': self.user.id,
+      #'book_name': self.book.name,
+      #'book_id': self.book.id,
       'rating': self.rating,
       'reviewtext': self.reviewtext
     }
