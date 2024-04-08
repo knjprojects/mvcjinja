@@ -39,6 +39,7 @@ class User(db.Model):
         book = Book.query.get(book_id)
         if book:
             try:
+                
                 review = create_review(self.id, book_id, rating, reviewtext)
                 return review
             except Exception as e:

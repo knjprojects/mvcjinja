@@ -16,6 +16,13 @@ class Review(db.Model):
   def __repr__(self):
       return f'<Review {self.id} : {self.reviewtext} book {self.book.name}>'
   
+
+  def setReviewText(self,reviewtext):
+     self.reviewtext=reviewtext
+    
+  def setRating(self,rating):
+     self.rating=rating
+  
   def get_json(self):
     return{
       'id': self.id,

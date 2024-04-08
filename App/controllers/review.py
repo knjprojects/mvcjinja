@@ -3,10 +3,24 @@ from App.database import db
 
 
 def create_review(user_id, book_id, rating, reviewtext):
-    review = Review(user_id=user_id, book_id=book_id, rating=rating, reviewtext=reviewtext)
-    db.session.add(review)
-    db.session.commit()
-    return review
+    from App.models import User
+    exist=Review.query.filter_by(user_id=user_id, book_id=book_id).all()
+    if not exist:
+        review = Review(user_id=user_id, book_id=book_id, rating=rating, reviewtext=reviewtext)
+        db.session.add(review)
+        db.session.commit()
+        return review
+    return exist
+
+def update_review(user_id,book_id,rating, reviewtext):
+    exist=Review.query.filter_by(user_id=user_id, book_id=book_id).all()
+    if exist:
+        exist.setRating(rating)
+        exist.setReviewText(reviewtext)
+        db.session.add(exist)
+        db.session.commit()
+        return exist
+    return None
 def get_review(id):
     return Review.query.get(id) #Review.query.filter_by(id=id).first()
 
