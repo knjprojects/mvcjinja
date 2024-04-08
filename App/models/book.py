@@ -22,5 +22,4 @@ class Book(db.Model):
       'author': self.author,
       'publisher': self.publisher,
       'reviews_count': self.reviews_count,
-      
   }
