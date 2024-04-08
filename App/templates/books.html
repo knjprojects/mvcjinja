@@ -156,7 +156,26 @@
                 <p class="card-author">{{ book.author }}</p>
                 <p class="card-publisher">{{ book.publisher }}</p>
               </div>
-              {% if is_authenticated %}
+              
+            </div>
+            
+          </div>
+        {% endfor %}
+        {% endif %}
+      </div>
+      <aside>
+        {% if reviews %}
+        <div class="row">
+
+        {%for review in reviews%}
+        <p>{{review.user_id}}</p>
+        <p>{{review.book_name}}</p>
+        <p>{{review.rating}}</p>
+        <p>{{review.reviewtext}}</p>
+          
+        {% endfor %}
+        </div>
+        {% if is_authenticated %}
               <form class="form-row" method="GET" action="/reviews/{{book.id}}" id="makeReview">
                 <input type="radio" id="option1" name="rating" value="option1">
                 <label for="option1"> 1</label><br>
@@ -172,15 +191,6 @@
                 <input class="" type="submit"  value="Review">
               </form>
               {% endif %}
-            </div>
-            
-          </div>
-        {% endfor %}
-        {% endif %}
-      </div>
-      <aside>
-        {% if reviews %}
-          <p>getting reviews data</p>
         {% endif %}
       </aside>
     </div>
